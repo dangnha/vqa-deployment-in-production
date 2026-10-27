@@ -1,0 +1,13 @@
+$ docker images vqa-api:03
+IMAGE        ID             DISK USAGE   CONTENT SIZE   EXTRA
+vqa-api:03   0576917b735b        1.7GB          363MB        
+
+$ docker history vqa-api:03 (top layers)
+0B	CMD ["uvicorn" "app.main:app" "--host" "0.0.…
+0B	EXPOSE [8000/tcp]
+0B	ENV HF_HOME=/hf_cache
+49.2kB	COPY app ./app # buildkit
+1.19GB	RUN /bin/sh -c pip install --no-cache-dir -r…
+12.3kB	COPY requirements.txt . # buildkit
+8.19kB	WORKDIR /app
+0B	CMD ["python3"]

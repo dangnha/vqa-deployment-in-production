@@ -1,0 +1,6 @@
+$ curl -s -w " HTTP %{http_code}\n" -X POST localhost:8701/predict -F image=@samples/big_image.jpg -F "question=How many cats?"   # 7.4 MB file
+{"detail":"Image is larger than 5 MB"} HTTP 413
+$ curl -s -w " HTTP %{http_code}\n" -X POST localhost:8701/predict -F "image=@samples/not_an_image.txt;type=image/jpeg" -F "question=What is this?"
+{"detail":"File is not a valid image"} HTTP 400
+$ curl -s -w " HTTP %{http_code}\n" localhost:8701/health
+{"status":"ok","model_loaded":true} HTTP 200

@@ -1,0 +1,17 @@
+$ docker run -d --name vqa03 ... (second run, same bind mount)
+505d98d447e11aec769bb79b61ab276eb4ba2435e27d694e66ab6bd61ca47af4
+$ docker logs vqa03
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+Using device: cpu
+Model loaded in 2.8s
+INFO:     172.17.0.1:56224 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56236 - "POST /predict HTTP/1.1" 200 OK
+
+$ du -sh hf_cache   (unchanged: nothing downloaded again)
+450M	hf_cache
+
+$ curl -X POST localhost:8701/predict -F image=@samples/coco_000000000139.jpg -F "question=Is there a television?"
+{"answer":"yes","confidence":1.0,"latency_ms":140.3}

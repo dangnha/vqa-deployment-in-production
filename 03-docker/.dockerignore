@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.env
+hf_cache/
+demo_outputs/
+client.py
+samples/
+.git
+README.md

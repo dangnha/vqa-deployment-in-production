@@ -1,0 +1,25 @@
+$ ls hf_cache   (empty before the first run)
+(empty)
+$ docker run -d --name vqa03 -p 8701:8000 --user "$(id -u):$(id -g)" -v "$(pwd)/hf_cache:/hf_cache" vqa-api:03
+7be7b42981af67da5e676dc41044a97eb82781a68527fe069faf51952426491f
+$ docker logs vqa03
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+Using device: cpu
+Model loaded in 65.5s
+INFO:     172.17.0.1:37564 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:37574 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:37580 - "POST /predict HTTP/1.1" 200 OK
+INFO:     172.17.0.1:37596 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.17.0.1:37600 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+INFO:     172.17.0.1:37610 - "POST /predict HTTP/1.1" 400 Bad Request
+Token indices sequence length is longer than the specified maximum sequence length for this model (102 > 40). Running this sequence through the model will result in indexing errors
+INFO:     172.17.0.1:37624 - "POST /predict HTTP/1.1" 500 Internal Server Error
+
+$ du -sh hf_cache; ls -l hf_cache/hub
+450M	hf_cache
+total 8
+drwxr-xr-x 6 user    user    4096 Oct 27 09:06 models--dandelin--vilt-b32-finetuned-vqa
+-rw-r--r-- 1 user    user       1 Oct 27 09:05 version.txt

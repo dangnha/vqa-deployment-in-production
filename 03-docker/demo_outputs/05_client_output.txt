@@ -1,0 +1,13 @@
+$ python client.py
+--- (a) health -> 200
+{'status': 'ok', 'model_loaded': True}
+--- (b) valid question -> 200
+{'answer': '2', 'confidence': 0.9444, 'latency_ms': 142.0}
+--- (c) empty question -> 422
+{'detail': 'Question must not be empty'}
+--- (d) missing question -> 422
+{'detail': [{'type': 'missing', 'loc': ['body', 'question'], 'msg': 'Field required', 'input': None}]}
+--- (e) not an image -> 400
+{'detail': 'Unsupported file type: text/plain'}
+--- (f) question too long -> 500
+{'detail': 'Inference failed: The size of tensor a (102) must match the size of tensor b (40) at non-singleton dimension 1'}

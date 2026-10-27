@@ -1,0 +1,21 @@
+# Rebuild without changes: every layer is CACHED
+$ docker build -t vqa-api:03 .
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+#2 [internal] load metadata for docker.io/library/python:3.11-slim
+#2 DONE 2.4s
+#3 [internal] load .dockerignore
+#3 DONE 0.0s
+#4 [internal] load build context
+#4 DONE 0.0s
+#5 [1/5] FROM docker.io/library/python:3.11-slim@sha256:b7a9e5f6a93d6d4a31f129bbd4bdee69efccb6ded0fb230d78aafaf37af98377
+#5 DONE 0.0s
+#6 [2/5] WORKDIR /app
+#6 CACHED
+#7 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#7 CACHED
+#8 [3/5] COPY requirements.txt .
+#8 CACHED
+#9 [5/5] COPY app ./app
+#9 CACHED
+#10 DONE 0.1s
