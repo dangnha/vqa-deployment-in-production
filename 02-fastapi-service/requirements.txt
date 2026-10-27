@@ -1,0 +1,8 @@
+torch
+transformers>=4.40
+pillow
+fastapi
+uvicorn[standard]
+python-multipart
+# client only
+requests

@@ -1,0 +1,22 @@
+$ curl -s http://localhost:8701/health
+{"status":"ok","model_loaded":true}
+
+$ curl -s -X POST http://localhost:8701/predict -F image=@samples/coco_000000039769.jpg -F question="How many cats are there?"
+{"answer":"2","confidence":0.9444,"latency_ms":18.3}
+
+$ curl -s -X POST http://localhost:8701/predict -F image=@samples/coco_000000039769.jpg -F question="What color is the couch?"
+{"answer":"pink","confidence":0.9134,"latency_ms":17.0}
+
+$ curl -s -X POST http://localhost:8701/predict -F image=@samples/coco_000000000632.jpg -F "question=What room is this?"
+{"answer":"bedroom","confidence":0.9998,"latency_ms":17.2}
+
+# 413: image larger than 5 MB
+$ curl -s -w "\nHTTP %{http_code}\n" -X POST http://localhost:8701/predict -F image=@samples/big_image.jpg -F "question=How many cats are there?"
+{"detail":"Image is larger than 5 MB"}
+HTTP 413
+
+# 400: file sent as image/jpeg but it is not a valid image
+$ curl -s -w "\nHTTP %{http_code}\n" -X POST http://localhost:8701/predict -F "image=@samples/not_an_image.txt;type=image/jpeg" -F "question=What is this?"
+{"detail":"File is not a valid image"}
+HTTP 400
+
