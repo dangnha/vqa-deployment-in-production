@@ -1,0 +1,10 @@
+# First run: weights are downloaded into HF_HOME, so load time includes the download
+$ python run.py samples/coco_000000039769.jpg "How many cats are there?"
+Device     : cuda
+Image      : samples/coco_000000039769.jpg
+Question   : How many cats are there?
+Answer     : 2
+Confidence : 0.9444
+Load time  : 52.26 s
+Inference  : 17.7 ms
+

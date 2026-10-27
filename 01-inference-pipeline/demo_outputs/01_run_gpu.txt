@@ -1,0 +1,54 @@
+$ python run.py samples/coco_000000039769.jpg "How many cats are there?"
+Device     : cuda
+Image      : samples/coco_000000039769.jpg
+Question   : How many cats are there?
+Answer     : 2
+Confidence : 0.9444
+Load time  : 2.55 s
+Inference  : 17.4 ms
+
+$ python run.py samples/coco_000000039769.jpg "What color is the couch?"
+Device     : cuda
+Image      : samples/coco_000000039769.jpg
+Question   : What color is the couch?
+Answer     : pink
+Confidence : 0.9134
+Load time  : 2.57 s
+Inference  : 17.5 ms
+
+$ python run.py samples/coco_000000000139.jpg "What room is this?"
+Device     : cuda
+Image      : samples/coco_000000000139.jpg
+Question   : What room is this?
+Answer     : dining room
+Confidence : 0.5902
+Load time  : 2.53 s
+Inference  : 18.8 ms
+
+$ python run.py samples/coco_000000000139.jpg "Is there a television?"
+Device     : cuda
+Image      : samples/coco_000000000139.jpg
+Question   : Is there a television?
+Answer     : yes
+Confidence : 1.0000
+Load time  : 2.57 s
+Inference  : 18.6 ms
+
+$ python run.py samples/coco_000000000632.jpg "What is on the bed?"
+Device     : cuda
+Image      : samples/coco_000000000632.jpg
+Question   : What is on the bed?
+Answer     : pillows
+Confidence : 0.3828
+Load time  : 2.92 s
+Inference  : 16.5 ms
+
+$ python run.py samples/coco_000000000632.jpg "What room is this?"
+Device     : cuda
+Image      : samples/coco_000000000632.jpg
+Question   : What room is this?
+Answer     : bedroom
+Confidence : 0.9998
+Load time  : 2.73 s
+Inference  : 16.1 ms
+

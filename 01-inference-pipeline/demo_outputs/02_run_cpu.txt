@@ -1,0 +1,28 @@
+# Same runs forced to CPU with CUDA_VISIBLE_DEVICES=""
+$ python run.py samples/coco_000000039769.jpg "How many cats are there?"
+Device     : cpu
+Image      : samples/coco_000000039769.jpg
+Question   : How many cats are there?
+Answer     : 2
+Confidence : 0.9444
+Load time  : 2.37 s
+Inference  : 110.9 ms
+
+$ python run.py samples/coco_000000000139.jpg "What room is this?"
+Device     : cpu
+Image      : samples/coco_000000000139.jpg
+Question   : What room is this?
+Answer     : dining room
+Confidence : 0.5902
+Load time  : 2.58 s
+Inference  : 120.8 ms
+
+$ python run.py samples/coco_000000000632.jpg "What is on the bed?"
+Device     : cpu
+Image      : samples/coco_000000000632.jpg
+Question   : What is on the bed?
+Answer     : pillows
+Confidence : 0.3828
+Load time  : 2.47 s
+Inference  : 93.1 ms
+

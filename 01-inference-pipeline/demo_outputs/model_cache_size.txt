@@ -1,0 +1,1 @@
+450M	~/aio-vqa-deploy/.hf_cache/hub/models--dandelin--vilt-b32-finetuned-vqa
