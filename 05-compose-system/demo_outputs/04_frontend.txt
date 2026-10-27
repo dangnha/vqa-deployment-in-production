@@ -1,0 +1,40 @@
+$ curl -s -o /dev/null -w "%{http_code}\n" localhost:8702/
+200
+
+$ curl -s localhost:8702/_stcore/health
+ok
+
+# Headless Chromium (Playwright) opened http://localhost:8702, uploaded samples/coco_000000039769.jpg,
+# typed "How many cats are there?" and clicked Ask; it waited for the "Answer:" text (see streamlit_ui.png):
+answer rendered after 0.18s: Answer: 2
+Confidence: 0.9444
+json: { "answer":"2" "confidence":0.9444 "latency_ms":120.4 }
+
+# From INSIDE the frontend container: the service name "api" resolves through Compose DNS
+$ docker compose exec frontend python -c "<print API_URL, resolve api, GET http://api:8000/health>"
+API_URL = http://api:8000/predict
+api resolves to 172.18.0.2
+{'status': 'ok', 'model_loaded': True, 'device': 'cpu'}
+
+$ docker compose logs frontend
+frontend-1  | 2026-10-27 10:43:39.040 Uvicorn server started on 0.0.0.0:8501
+frontend-1  | 
+frontend-1  |   You can now view your Streamlit app in your browser.
+frontend-1  | 
+frontend-1  |   Local URL: http://localhost:8501
+frontend-1  |   Network URL: http://172.18.0.3:8501
+frontend-1  |   External URL: http://<public-ip-redacted>:8501
+frontend-1  | 
+
+$ docker compose logs --since 2m api | grep "INFO POST /predict"
+api-1  | 2026-10-27 10:43:47,394 INFO POST /predict -> 200 in 142 ms
+api-1  | 2026-10-27 10:43:47,518 INFO POST /predict -> 200 in 122 ms
+api-1  | 2026-10-27 10:43:47,652 INFO POST /predict -> 200 in 133 ms
+api-1  | 2026-10-27 10:43:47,769 INFO POST /predict -> 200 in 115 ms
+api-1  | 2026-10-27 10:43:47,871 INFO POST /predict -> 200 in 99 ms
+api-1  | 2026-10-27 10:43:47,955 INFO POST /predict -> 200 in 82 ms
+api-1  | 2026-10-27 10:43:47,958 INFO POST /predict -> 422 in 1 ms
+api-1  | 2026-10-27 10:43:47,961 INFO POST /predict -> 400 in 2 ms
+api-1  | 2026-10-27 10:43:47,988 INFO POST /predict -> 413 in 20 ms
+api-1  | 2026-10-27 10:43:48,007 INFO POST /predict -> 500 in 17 ms
+api-1  | 2026-10-27 10:43:49,743 INFO POST /predict -> 200 in 124 ms

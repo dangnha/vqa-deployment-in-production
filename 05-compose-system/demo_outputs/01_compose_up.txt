@@ -1,0 +1,272 @@
+# api image unchanged since the first part 05 build (all layers CACHED); frontend rebuilt from scratch for Streamlit
+$ time docker compose --progress plain build --no-cache frontend
+ Image 05-compose-system-frontend Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.10kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 595B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 63B done
+#5 DONE 0.0s
+
+#6 [1/5] FROM docker.io/library/python:3.11-slim@sha256:ae952e0a57138a4317b9b61caaa19a8217c2f356803f8d7e63aad08769950937
+#6 resolve docker.io/library/python:3.11-slim@sha256:ae952e0a57138a4317b9b61caaa19a8217c2f356803f8d7e63aad08769950937 0.0s done
+#6 DONE 0.0s
+
+#7 [2/5] WORKDIR /app
+#7 CACHED
+
+#8 [3/5] COPY requirements.txt .
+#8 DONE 0.0s
+
+#9 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#9 1.168 Collecting streamlit (from -r requirements.txt (line 1))
+#9 1.367   Downloading streamlit-1.66.1-py3-none-any.whl.metadata (10 kB)
+#9 1.474 Collecting requests (from -r requirements.txt (line 2))
+#9 1.558   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#9 1.669 Collecting altair!=5.4.0,!=5.4.1,<7,>=5.0.0 (from streamlit->-r requirements.txt (line 1))
+#9 1.749   Downloading altair-6.3.0-py3-none-any.whl.metadata (11 kB)
+#9 1.840 Collecting click<9,>=7.0 (from streamlit->-r requirements.txt (line 1))
+#9 1.884   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#9 2.468 Collecting numpy<3,>=1.25.0 (from streamlit->-r requirements.txt (line 1))
+#9 2.517   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+#9 2.523 Requirement already satisfied: packaging>=20 in /usr/local/lib/python3.11/site-packages (from streamlit->-r requirements.txt (line 1)) (26.3)
+#9 2.944 Collecting pandas<4,>=1.5.3 (from streamlit->-r requirements.txt (line 1))
+#9 2.992   Downloading pandas-3.1.0-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (18 kB)
+#9 3.777 Collecting pillow<14,>=9.2.0 (from streamlit->-r requirements.txt (line 1))
+#9 3.821   Downloading pillow-13.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+#9 3.925 Collecting pydeck<1,>=0.8.0b4 (from streamlit->-r requirements.txt (line 1))
+#9 3.969   Downloading pydeck-0.9.3-py2.py3-none-any.whl.metadata (4.2 kB)
+#9 4.579 Collecting protobuf<8,>=5.26.1 (from streamlit->-r requirements.txt (line 1))
+#9 4.626   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+#9 5.066 Collecting pyarrow!=25.0.0,<27,>=10.0.1 (from streamlit->-r requirements.txt (line 1))
+#9 5.153   Downloading pyarrow-26.0.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+#9 5.321 Collecting typing-extensions<5,>=4.10.0 (from streamlit->-r requirements.txt (line 1))
+#9 5.371   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#9 5.560 Collecting starlette<2,>=0.46.0 (from streamlit->-r requirements.txt (line 1))
+#9 5.644   Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+#9 5.854 Collecting uvicorn<1,>=0.30.0 (from streamlit->-r requirements.txt (line 1))
+#9 5.898   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+#9 6.027 Collecting anyio<5,>=4.0.0 (from streamlit->-r requirements.txt (line 1))
+#9 6.071   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+#9 6.166 Collecting python-multipart<1,>=0.0.10 (from streamlit->-r requirements.txt (line 1))
+#9 6.218   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+#9 6.941 Collecting websockets<18,>=12.0.0 (from streamlit->-r requirements.txt (line 1))
+#9 7.012   Downloading websockets-17.3-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+#9 7.122 Collecting itsdangerous<3,>=2.1.2 (from streamlit->-r requirements.txt (line 1))
+#9 7.169   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#9 7.420 Collecting watchdog<7,>=2.1.5 (from streamlit->-r requirements.txt (line 1))
+#9 7.484   Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl.metadata (44 kB)
+#9 8.100 Collecting charset_normalizer<4,>=2 (from requests->-r requirements.txt (line 2))
+#9 8.146   Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+#9 8.317 Collecting idna<4,>=2.5 (from requests->-r requirements.txt (line 2))
+#9 8.390   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#9 8.555 Collecting urllib3<3,>=1.26 (from requests->-r requirements.txt (line 2))
+#9 8.624   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+#9 8.753 Collecting certifi>=2023.5.7 (from requests->-r requirements.txt (line 2))
+#9 8.817   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+#9 8.963 Collecting jinja2 (from altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit->-r requirements.txt (line 1))
+#9 9.032   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#9 9.187 Collecting jsonschema>=3.0 (from altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit->-r requirements.txt (line 1))
+#9 9.242   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+#9 9.439 Collecting narwhals>=2.4.0 (from altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit->-r requirements.txt (line 1))
+#9 9.497   Downloading narwhals-2.27.1-py3-none-any.whl.metadata (15 kB)
+#9 9.710 Collecting python-dateutil>=2.9.0 (from pandas<4,>=1.5.3->streamlit->-r requirements.txt (line 1))
+#9 9.773   Downloading python_dateutil-3.0.0-py2.py3-none-any.whl.metadata (8.2 kB)
+#9 9.885 Collecting h11>=0.8 (from uvicorn<1,>=0.30.0->streamlit->-r requirements.txt (line 1))
+#9 9.930   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#9 10.17 Collecting MarkupSafe>=2.0 (from jinja2->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit->-r requirements.txt (line 1))
+#9 10.21   Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#9 10.30 Collecting attrs>=22.2.0 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit->-r requirements.txt (line 1))
+#9 10.38   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+#9 10.46 Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit->-r requirements.txt (line 1))
+#9 10.54   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+#9 10.68 Collecting referencing>=0.28.4 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit->-r requirements.txt (line 1))
+#9 10.73   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+#9 11.77 Collecting rpds-py>=0.25.0 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit->-r requirements.txt (line 1))
+#9 11.82   Downloading rpds_py-2026.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+#9 11.95 Collecting six>=1.6 (from python-dateutil>=2.9.0->pandas<4,>=1.5.3->streamlit->-r requirements.txt (line 1))
+#9 12.03   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#9 12.11 Collecting tzdata (from python-dateutil>=2.9.0->pandas<4,>=1.5.3->streamlit->-r requirements.txt (line 1))
+#9 12.17   Downloading tzdata-2026.5-py2.py3-none-any.whl.metadata (1.4 kB)
+#9 12.28 Downloading streamlit-1.66.1-py3-none-any.whl (10.4 MB)
+#9 33.84 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#9 33.94 Downloading altair-6.3.0-py3-none-any.whl (797 kB)
+#9 34.44 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#9 34.55 Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+#9 34.66 Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (269 kB)
+#9 34.87 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#9 34.97 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#9 35.05 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#9 35.09 Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+#9 40.18 Downloading pandas-3.1.0-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.3 MB)
+#9 41.92 Downloading pillow-13.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+#9 42.64 Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+#9 42.72 Downloading pyarrow-26.0.0-cp311-cp311-manylinux_2_28_x86_64.whl (53.9 MB)
+#9 47.37 Downloading pydeck-0.9.3-py2.py3-none-any.whl (11.4 MB)
+#9 48.40 Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+#9 48.44 Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+#9 48.50 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#9 48.55 Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#9 48.61 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+#9 48.66 Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl (79 kB)
+#9 48.71 Downloading websockets-17.3-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (225 kB)
+#9 48.78 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#9 48.82 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#9 48.88 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#9 48.93 Downloading narwhals-2.27.1-py3-none-any.whl (483 kB)
+#9 49.02 Downloading python_dateutil-3.0.0-py2.py3-none-any.whl (94 kB)
+#9 49.08 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#9 49.13 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#9 49.17 Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#9 49.22 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+#9 49.26 Downloading rpds_py-2026.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (375 kB)
+#9 49.34 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#9 49.39 Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
+#9 49.66 Installing collected packages: websockets, watchdog, urllib3, tzdata, typing-extensions, six, rpds-py, python-multipart, pyarrow, protobuf, pillow, numpy, narwhals, MarkupSafe, itsdangerous, idna, h11, click, charset_normalizer, certifi, attrs, uvicorn, requests, referencing, python-dateutil, jinja2, anyio, starlette, pydeck, pandas, jsonschema-specifications, jsonschema, altair, streamlit
+#9 55.47 Successfully installed MarkupSafe-3.0.4 altair-6.3.0 anyio-4.15.1 attrs-26.1.0 certifi-2026.10.23 charset_normalizer-3.5.2 click-8.5.0 h11-0.16.0 idna-3.20 itsdangerous-2.2.0 jinja2-3.1.6 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 narwhals-2.27.1 numpy-2.4.6 pandas-3.1.0 pillow-13.0.0 protobuf-7.36.2 pyarrow-26.0.0 pydeck-0.9.3 python-dateutil-3.0.0 python-multipart-0.0.32 referencing-0.37.0 requests-2.34.2 rpds-py-2026.9.1 six-1.17.0 starlette-1.10.0 streamlit-1.66.1 typing-extensions-4.16.0 tzdata-2026.5 urllib3-2.8.0 uvicorn-0.54.0 watchdog-6.0.0 websockets-17.3
+#9 55.47 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#9 55.70 
+#9 55.70 [notice] A new release of pip is available: 24.0 -> 26.2.2
+#9 55.70 [notice] To update, run: pip install --upgrade pip
+#9 DONE 56.4s
+
+#10 [5/5] COPY app.py .
+#10 DONE 0.1s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 11.6s done
+#11 exporting manifest sha256:eec5a710bb63d8816cd546339267ff8603614dfd8ebda36e9f556fe8c719647a 0.0s done
+#11 exporting config sha256:2426aa2a0111514dbaafbafb37e07f8335665959f63ea5ccf0c4705dd6634ea9 done
+#11 exporting attestation manifest sha256:dcde9417d10a39250f4d03cc35a1a11ac39a20c24a8f7a34dd976a929bcbaceb 0.0s done
+#11 exporting manifest list sha256:f7724e8aebb507449b2f0926dc72652c64e3b315cef9cba605e64a9ff14829eb done
+#11 naming to docker.io/library/05-compose-system-frontend:latest done
+#11 unpacking to docker.io/library/05-compose-system-frontend:latest
+#11 unpacking to docker.io/library/05-compose-system-frontend:latest 1.7s done
+#11 DONE 13.4s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+ Image 05-compose-system-frontend Built 
+
+real	1m10.515s
+user	0m0.543s
+sys	0m0.285s
+
+$ time docker compose --progress plain up -d --build
+ Image 05-compose-system-frontend Building 
+ Image 05-compose-system-api Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.06kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 571B done
+#2 DONE 0.0s
+
+#3 [frontend internal] load build definition from Dockerfile
+#3 transferring dockerfile: 595B done
+#3 DONE 0.0s
+
+#4 [frontend internal] load metadata for docker.io/library/python:3.11-slim
+#4 DONE 0.0s
+
+#5 [frontend internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [api internal] load .dockerignore
+#6 transferring context: 217B done
+#6 DONE 0.0s
+
+#7 [frontend internal] load build context
+#7 transferring context: 63B done
+#7 DONE 0.0s
+
+#8 [api internal] load build context
+#8 transferring context: 744B done
+#8 DONE 0.0s
+
+#9 [frontend 1/5] FROM docker.io/library/python:3.11-slim@sha256:ae952e0a57138a4317b9b61caaa19a8217c2f356803f8d7e63aad08769950937
+#9 resolve docker.io/library/python:3.11-slim@sha256:ae952e0a57138a4317b9b61caaa19a8217c2f356803f8d7e63aad08769950937 0.0s done
+#9 DONE 0.0s
+
+#10 [frontend 4/5] RUN pip install --no-cache-dir -r requirements.txt
+#10 CACHED
+
+#11 [frontend 3/5] COPY requirements.txt .
+#11 CACHED
+
+#12 [frontend 5/5] COPY app.py .
+#12 CACHED
+
+#13 [api 4/5] RUN pip install --no-cache-dir -r requirements.txt
+#13 CACHED
+
+#14 [frontend 2/5] WORKDIR /app
+#14 CACHED
+
+#15 [api 3/5] COPY requirements.txt .
+#15 CACHED
+
+#16 [api 5/5] COPY app ./app
+#16 CACHED
+
+#17 [api] exporting to image
+#17 exporting layers done
+#17 exporting manifest sha256:00716f7dc4d078e18c155f0f49b79d35cd5e9087bdf0458ba93bd76174f3d367 done
+#17 exporting config sha256:85ebd0eafa8419a19c261f448e49666d3a2f6e39466a9f4aee010afa8bcc768f done
+#17 exporting attestation manifest sha256:c6259a1c42260b6eceac9d9ebe21a19a0dbf9951c5b134e85301c1268faf923c 0.0s done
+#17 exporting manifest list sha256:daf7d16c5226daa62314b2cce11570a3aa05fc5037d6824e1ed4c7804fd324c7
+#17 exporting manifest list sha256:daf7d16c5226daa62314b2cce11570a3aa05fc5037d6824e1ed4c7804fd324c7 done
+#17 naming to docker.io/library/05-compose-system-api:latest done
+#17 unpacking to docker.io/library/05-compose-system-api:latest done
+#17 DONE 0.1s
+
+#18 [frontend] exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:eec5a710bb63d8816cd546339267ff8603614dfd8ebda36e9f556fe8c719647a done
+#18 exporting config sha256:2426aa2a0111514dbaafbafb37e07f8335665959f63ea5ccf0c4705dd6634ea9 done
+#18 exporting attestation manifest sha256:76188042929694b8801e580b46244b4b081a914ec439efefe94f8024115018fe done
+#18 exporting manifest list sha256:d2488365ad6ac8126a0f106c40b3562719dbe4d42a75a0e294986250172a2134 0.0s done
+#18 naming to docker.io/library/05-compose-system-frontend:latest done
+#18 unpacking to docker.io/library/05-compose-system-frontend:latest done
+#18 DONE 0.1s
+
+#19 [frontend] resolving provenance for metadata file
+#19 DONE 0.0s
+
+#20 [api] resolving provenance for metadata file
+#20 DONE 0.0s
+ Image 05-compose-system-api Built 
+ Image 05-compose-system-frontend Built 
+ Network 05-compose-system_default Creating 
+ Network 05-compose-system_default Creating 
+ Network 05-compose-system_default Created 
+ Network 05-compose-system_default Created 
+ Container 05-compose-system-api-1 Creating 
+ Container 05-compose-system-api-1 Created 
+ Container 05-compose-system-frontend-1 Creating 
+ Container 05-compose-system-frontend-1 Created 
+ Container 05-compose-system-api-1 Starting 
+ Container 05-compose-system-api-1 Started 
+ Container 05-compose-system-api-1 Waiting 
+ Container 05-compose-system-api-1 Healthy 
+ Container 05-compose-system-frontend-1 Starting 
+ Container 05-compose-system-frontend-1 Started 
+
+real	0m7.148s
+user	0m0.370s
+sys	0m0.173s

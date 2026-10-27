@@ -1,0 +1,15 @@
+$ docker compose down
+ Container 05-compose-system-frontend-1 Stopping 
+ Container 05-compose-system-frontend-1 Stopped 
+ Container 05-compose-system-frontend-1 Removing 
+ Container 05-compose-system-frontend-1 Removed 
+ Container 05-compose-system-api-1 Stopping 
+ Container 05-compose-system-api-1 Stopped 
+ Container 05-compose-system-api-1 Removing 
+ Container 05-compose-system-api-1 Removed 
+ Network 05-compose-system_default Removing 
+ Network 05-compose-system_default Removed 
+
+$ docker volume ls | grep 05-compose
+local     05-compose-system_hf_cache
+local     05-compose-system_logs

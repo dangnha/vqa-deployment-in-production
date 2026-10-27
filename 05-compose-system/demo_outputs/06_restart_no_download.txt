@@ -1,0 +1,75 @@
+$ docker compose restart api
+ Container 05-compose-system-api-1 Restarting 
+ Container 05-compose-system-api-1 Started 
+
+$ docker compose logs --since 1m api
+api-1  | INFO:     Started server process [1]
+api-1  | INFO:     Waiting for application startup.
+api-1  | 2026-10-27 10:39:54,122 WARNING DEVICE=cuda, CUDA available=False -> using cpu
+api-1  | 2026-10-27 10:39:54,122 INFO Loading dandelin/vilt-b32-finetuned-vqa on cpu
+api-1  | 2026-10-27 10:39:56,380 INFO Startup finished in 2.3s
+api-1  | INFO:     Application startup complete.
+api-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api-1  | 2026-10-27 10:39:57,882 INFO GET /health -> 200 in 2 ms
+api-1  | INFO:     127.0.0.1:45266 - "GET /health HTTP/1.1" 200 OK
+api-1  | 2026-10-27 10:40:07,971 INFO GET /health -> 200 in 1 ms
+api-1  | INFO:     127.0.0.1:37802 - "GET /health HTTP/1.1" 200 OK
+api-1  | 2026-10-27 10:40:08,536 INFO POST /predict -> 200 in 1467 ms
+api-1  | INFO:     172.18.0.1:45560 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 10:40:08,688 INFO POST /predict -> 200 in 144 ms
+api-1  | INFO:     172.18.0.1:45576 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 10:40:08,813 INFO POST /predict -> 200 in 121 ms
+api-1  | INFO:     172.18.0.1:45592 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 10:40:08,935 INFO POST /predict -> 200 in 120 ms
+api-1  | INFO:     172.18.0.1:45600 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 10:40:09,030 INFO POST /predict -> 200 in 93 ms
+api-1  | INFO:     172.18.0.1:45614 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 10:40:09,117 INFO POST /predict -> 200 in 85 ms
+api-1  | INFO:     172.18.0.1:45628 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 10:40:09,120 INFO POST /predict -> 422 in 1 ms
+api-1  | INFO:     172.18.0.1:45644 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+api-1  | 2026-10-27 10:40:09,124 INFO POST /predict -> 400 in 2 ms
+api-1  | INFO:     172.18.0.1:45654 - "POST /predict HTTP/1.1" 400 Bad Request
+api-1  | 2026-10-27 10:40:09,149 INFO POST /predict -> 413 in 19 ms
+api-1  | INFO:     172.18.0.1:45660 - "POST /predict HTTP/1.1" 413 Request Entity Too Large
+api-1  | Token indices sequence length is longer than the specified maximum sequence length for this model (102 > 40). Running this sequence through the model will result in indexing errors
+api-1  | 2026-10-27 10:40:09,164 INFO POST /predict -> 500 in 13 ms
+api-1  | INFO:     172.18.0.1:45676 - "POST /predict HTTP/1.1" 500 Internal Server Error
+api-1  | 2026-10-27 10:40:09,166 INFO GET /logs -> 200 in 1 ms
+api-1  | INFO:     172.18.0.1:45692 - "GET /logs HTTP/1.1" 200 OK
+api-1  | 2026-10-27 10:40:11,191 INFO GET /health -> 200 in 0 ms
+api-1  | INFO:     172.18.0.3:58208 - "GET /health HTTP/1.1" 200 OK
+api-1  | INFO:     Shutting down
+api-1  | INFO:     Waiting for application shutdown.
+api-1  | INFO:     Application shutdown complete.
+api-1  | INFO:     Finished server process [1]
+api-1  | INFO:     Started server process [1]
+api-1  | INFO:     Waiting for application startup.
+api-1  | 2026-10-27 10:40:13,469 WARNING DEVICE=cuda, CUDA available=False -> using cpu
+api-1  | 2026-10-27 10:40:13,470 INFO Loading dandelin/vilt-b32-finetuned-vqa on cpu
+api-1  | 2026-10-27 10:40:15,764 INFO Startup finished in 2.3s
+api-1  | INFO:     Application startup complete.
+api-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api-1  | 2026-10-27 10:40:17,420 INFO GET /health -> 200 in 2 ms
+api-1  | INFO:     127.0.0.1:42860 - "GET /health HTTP/1.1" 200 OK
+
+$ curl -s localhost:8701/logs | python -m json.tool | head -12
+[
+    {
+        "id": 21,
+        "time": "2026-10-27T10:40:09",
+        "question": "cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat ",
+        "answer": null,
+        "confidence": null,
+        "latency_ms": null,
+        "status": 500
+    },
+    {
+        "id": 20,
+
+$ docker run --rm -v 05-compose-system_hf_cache:/c python:3.11-slim du -sh /c
+Unable to find image 'python:3.11-slim' locally
+3.11-slim: Pulling from library/python
+Digest: sha256:ae952e0a57138a4317b9b61caaa19a8217c2f356803f8d7e63aad08769950937
+Status: Downloaded newer image for python:3.11-slim
+450M	/c

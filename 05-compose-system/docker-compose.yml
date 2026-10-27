@@ -1,0 +1,40 @@
+services:
+  # FastAPI model server (CPU); model cache + SQLite log live in named volumes
+  api:
+    build: ./api
+    env_file: .env
+    environment:
+      - LOG_DB=/app/logs/requests.db
+    ports:
+      - "8701:8000"
+    volumes:
+      - hf_cache:/hf_cache
+      - logs:/app/logs
+    restart: unless-stopped
+    # Healthy only when /health returns 200 (slim images have no curl)
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      retries: 5
+      start_period: 60s
+    # GPU example, not active (needs NVIDIA Container Toolkit, see README):
+    # build: {context: ./api, dockerfile: Dockerfile.cuda}
+    # deploy:
+    #   resources: {reservations: {devices: [{driver: nvidia, count: 1, capabilities: [gpu]}]}}
+
+  # Streamlit UI; reaches the api by its service name through Compose DNS
+  frontend:
+    build: ./frontend
+    environment:
+      - API_URL=http://api:8000/predict
+    ports:
+      - "8702:8501"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+# Named volumes survive restarts and "down" (only "down -v" deletes them)
+volumes:
+  hf_cache: {}
+  logs: {}

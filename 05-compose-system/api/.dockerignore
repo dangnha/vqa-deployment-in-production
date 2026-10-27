@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+hf_cache/
+demo_outputs/
+client.py
+samples/
+.git
+README.md
+# Local SQLite request log from the "Without Docker" run; never bake it into the image
+logs/

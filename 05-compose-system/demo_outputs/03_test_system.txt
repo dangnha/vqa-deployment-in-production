@@ -1,0 +1,26 @@
+$ python test_system.py
+200 PASS samples/coco_000000039769.jpg 'How many cats are there?' -> 2
+200 PASS samples/coco_000000039769.jpg 'What color is the couch?' -> pink
+200 PASS samples/coco_000000000139.jpg 'What room is this?' -> dining room
+200 PASS samples/coco_000000000139.jpg 'Is there a TV?' -> yes
+200 PASS samples/coco_000000000632.jpg 'What is the main furniture?' -> bed
+200 PASS samples/coco_000000000632.jpg 'Is there a bookshelf?' -> yes
+422 PASS samples/coco_000000039769.jpg '' -> [{'type': 'missing', 'loc': ['body', 'question'], 'msg': 'Field required', 'input': None}]
+400 PASS samples/not_an_image.txt 'What is this?' -> Unsupported file type: text/plain
+413 PASS samples/big_image.jpg 'What is this?' -> Image is larger than 5 MB
+500 PASS samples/coco_000000039769.jpg 'cat cat cat cat cat cat cat ca' -> Inference failed: The size of tensor a (102) must match the size of tensor b (40) at non-singleton dimension 1
+
+GET /logs:
+{'id': 30, 'time': '2026-10-27T10:43:48', 'question': 'cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat ', 'answer': None, 'confidence': None, 'latency_ms': None, 'status': 500}
+{'id': 29, 'time': '2026-10-27T10:43:47', 'question': 'What is this?', 'answer': None, 'confidence': None, 'latency_ms': None, 'status': 413}
+{'id': 28, 'time': '2026-10-27T10:43:47', 'question': 'What is this?', 'answer': None, 'confidence': None, 'latency_ms': None, 'status': 400}
+{'id': 27, 'time': '2026-10-27T10:43:47', 'question': 'Is there a bookshelf?', 'answer': 'yes', 'confidence': 1.0, 'latency_ms': 78.1, 'status': 200}
+{'id': 26, 'time': '2026-10-27T10:43:47', 'question': 'What is the main furniture?', 'answer': 'bed', 'confidence': 0.9493, 'latency_ms': 95.6, 'status': 200}
+{'id': 25, 'time': '2026-10-27T10:43:47', 'question': 'Is there a TV?', 'answer': 'yes', 'confidence': 1.0, 'latency_ms': 112.3, 'status': 200}
+{'id': 24, 'time': '2026-10-27T10:43:47', 'question': 'What room is this?', 'answer': 'dining room', 'confidence': 0.5902, 'latency_ms': 129.6, 'status': 200}
+{'id': 23, 'time': '2026-10-27T10:43:47', 'question': 'What color is the couch?', 'answer': 'pink', 'confidence': 0.9134, 'latency_ms': 118.9, 'status': 200}
+{'id': 22, 'time': '2026-10-27T10:43:47', 'question': 'How many cats are there?', 'answer': '2', 'confidence': 0.9444, 'latency_ms': 135.0, 'status': 200}
+{'id': 21, 'time': '2026-10-27T10:40:09', 'question': 'cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat cat ', 'answer': None, 'confidence': None, 'latency_ms': None, 'status': 500}
+
+10/10 passed
+exit code: 0

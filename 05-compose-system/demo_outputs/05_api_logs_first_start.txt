@@ -1,0 +1,41 @@
+$ docker compose logs api   (first start: model downloaded into the hf_cache volume)
+api-1  | INFO:     Started server process [1]
+api-1  | INFO:     Waiting for application startup.
+api-1  | 2026-10-27 02:22:23,057 WARNING DEVICE=cuda, CUDA available=False -> using cpu
+api-1  | 2026-10-27 02:22:23,057 INFO Loading dandelin/vilt-b32-finetuned-vqa on cpu
+api-1  | 2026-10-27 02:23:13,249 INFO Startup finished in 50.2s
+api-1  | INFO:     Application startup complete.
+api-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api-1  | 2026-10-27 02:23:17,858 INFO GET /health -> 200 in 2 ms
+api-1  | INFO:     127.0.0.1:41406 - "GET /health HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:27,947 INFO GET /health -> 200 in 0 ms
+api-1  | INFO:     127.0.0.1:60342 - "GET /health HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:38,047 INFO GET /health -> 200 in 0 ms
+api-1  | INFO:     127.0.0.1:42790 - "GET /health HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:48,156 INFO GET /health -> 200 in 1 ms
+api-1  | INFO:     127.0.0.1:56706 - "GET /health HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:58,233 INFO GET /health -> 200 in 1 ms
+api-1  | INFO:     127.0.0.1:43806 - "GET /health HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:59,184 INFO POST /predict -> 200 in 184 ms
+api-1  | INFO:     172.18.0.1:60294 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:59,295 INFO POST /predict -> 200 in 109 ms
+api-1  | INFO:     172.18.0.1:60308 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:59,416 INFO POST /predict -> 200 in 119 ms
+api-1  | INFO:     172.18.0.1:60312 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:59,536 INFO POST /predict -> 200 in 118 ms
+api-1  | INFO:     172.18.0.1:60322 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:59,636 INFO POST /predict -> 200 in 97 ms
+api-1  | INFO:     172.18.0.1:60334 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:59,727 INFO POST /predict -> 200 in 89 ms
+api-1  | INFO:     172.18.0.1:60344 - "POST /predict HTTP/1.1" 200 OK
+api-1  | 2026-10-27 02:23:59,730 INFO POST /predict -> 422 in 1 ms
+api-1  | INFO:     172.18.0.1:60356 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+api-1  | 2026-10-27 02:23:59,733 INFO POST /predict -> 400 in 2 ms
+api-1  | INFO:     172.18.0.1:60370 - "POST /predict HTTP/1.1" 400 Bad Request
+api-1  | 2026-10-27 02:23:59,758 INFO POST /predict -> 413 in 19 ms
+api-1  | INFO:     172.18.0.1:60378 - "POST /predict HTTP/1.1" 413 Request Entity Too Large
+api-1  | Token indices sequence length is longer than the specified maximum sequence length for this model (102 > 40). Running this sequence through the model will result in indexing errors
+api-1  | 2026-10-27 02:23:59,772 INFO POST /predict -> 500 in 12 ms
+api-1  | INFO:     172.18.0.1:60386 - "POST /predict HTTP/1.1" 500 Internal Server Error
+api-1  | 2026-10-27 02:23:59,773 INFO GET /logs -> 200 in 1 ms
+api-1  | INFO:     172.18.0.1:60392 - "GET /logs HTTP/1.1" 200 OK

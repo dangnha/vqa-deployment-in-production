@@ -1,0 +1,14 @@
+$ docker compose ps
+NAME                           IMAGE                        COMMAND                  SERVICE    CREATED          STATUS                    PORTS
+05-compose-system-api-1        05-compose-system-api        "uvicorn app.main:ap…"   api        14 seconds ago   Up 13 seconds (healthy)   0.0.0.0:8701->8000/tcp, [::]:8701->8000/tcp
+05-compose-system-frontend-1   05-compose-system-frontend   "streamlit run app.p…"   frontend   14 seconds ago   Up 8 seconds              0.0.0.0:8702->8501/tcp, [::]:8702->8501/tcp
+
+$ docker images | grep 05-compose
+IMAGE                                 ID             DISK USAGE   CONTENT SIZE   EXTRA
+05-compose-system-api:latest          daf7d16c5226        1.7GB          363MB   U    
+05-compose-system-frontend:latest     d2488365ad6a        834MB          191MB   U    
+
+$ docker volume ls | grep 05-compose
+DRIVER    VOLUME NAME
+local     05-compose-system_hf_cache
+local     05-compose-system_logs
