@@ -1,0 +1,45 @@
+# vqa-api:04-cpu in Docker on CPU, .env says DEVICE=cuda -> falls back to cpu
+$ docker run -d --name vqa04 --env-file .env -p 8701:8000 --user "$(id -u):$(id -g)" -v "$(pwd)/hf_cache:/hf_cache" vqa-api:04-cpu
+ad43c68afc7f4f8517a11968981304d55e93d0d60b0d2dfc15b7f8c8a62b6240
+$ python client.py
+--- (a) health -> 200
+{'status': 'ok', 'model_loaded': True, 'device': 'cpu'}
+--- (b) valid question -> 200
+{'answer': '2', 'confidence': 0.9444, 'latency_ms': 128.9}
+--- (c) empty question -> 422
+{'detail': 'Question must not be empty'}
+--- (d) missing question -> 422
+{'detail': [{'type': 'missing', 'loc': ['body', 'question'], 'msg': 'Field required', 'input': None}]}
+--- (e) not an image -> 400
+{'detail': 'Unsupported file type: text/plain'}
+--- (f) question too long -> 500
+{'detail': 'Inference failed: The size of tensor a (102) must match the size of tensor b (40) at non-singleton dimension 1'}
+--- (g) image too big -> 413
+{'detail': 'Image is larger than 5 MB'}
+
+$ docker logs vqa04
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+2026-10-27 02:11:05,515 WARNING DEVICE=cuda, CUDA available=False -> using cpu
+2026-10-27 02:11:05,515 INFO Loading dandelin/vilt-b32-finetuned-vqa on cpu
+2026-10-27 02:12:02,587 INFO Startup finished in 57.1s
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-10-27 02:12:02,663 INFO GET /health -> 200 in 4 ms
+INFO:     172.17.0.1:44590 - "GET /health HTTP/1.1" 200 OK
+2026-10-27 02:12:03,743 INFO GET /health -> 200 in 1 ms
+INFO:     172.17.0.1:44596 - "GET /health HTTP/1.1" 200 OK
+2026-10-27 02:12:03,878 INFO Q='How many cats are there?' A='2' in 128.9 ms
+2026-10-27 02:12:03,878 INFO POST /predict -> 200 in 134 ms
+INFO:     172.17.0.1:44606 - "POST /predict HTTP/1.1" 200 OK
+2026-10-27 02:12:03,881 INFO POST /predict -> 422 in 1 ms
+INFO:     172.17.0.1:44616 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+2026-10-27 02:12:03,883 INFO POST /predict -> 422 in 1 ms
+INFO:     172.17.0.1:44624 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+2026-10-27 02:12:03,884 INFO POST /predict -> 400 in 0 ms
+INFO:     172.17.0.1:44638 - "POST /predict HTTP/1.1" 400 Bad Request
+Token indices sequence length is longer than the specified maximum sequence length for this model (102 > 40). Running this sequence through the model will result in indexing errors
+2026-10-27 02:12:03,896 INFO POST /predict -> 500 in 10 ms
+INFO:     172.17.0.1:44644 - "POST /predict HTTP/1.1" 500 Internal Server Error
+2026-10-27 02:12:03,924 INFO POST /predict -> 413 in 21 ms
+INFO:     172.17.0.1:44656 - "POST /predict HTTP/1.1" 413 Request Entity Too Large

@@ -1,0 +1,55 @@
+# Native run on the GPU (.env: DEVICE=cuda)
+$ set -a; source .env; set +a; uvicorn app.main:app --port 8701
+$ python client.py
+--- (a) health -> 200
+{'status': 'ok', 'model_loaded': True, 'device': 'cuda'}
+--- (b) valid question -> 200
+{'answer': '2', 'confidence': 0.9444, 'latency_ms': 203.5}
+--- (c) empty question -> 422
+{'detail': 'Question must not be empty'}
+--- (d) missing question -> 422
+{'detail': [{'type': 'missing', 'loc': ['body', 'question'], 'msg': 'Field required', 'input': None}]}
+--- (e) not an image -> 400
+{'detail': 'Unsupported file type: text/plain'}
+--- (f) question too long -> 500
+{'detail': 'Inference failed: The size of tensor a (102) must match the size of tensor b (40) at non-singleton dimension 1'}
+--- (g) image too big -> 413
+{'detail': 'Image is larger than 5 MB'}
+{"answer":"pink","confidence":0.9134,"latency_ms":17.8}   <- What color is the couch?
+{"answer":"2","confidence":0.9444,"latency_ms":17.3}   <- How many cats are there?
+{"answer":"yes","confidence":1.0,"latency_ms":17.2}   <- Is there a remote?
+
+--- server log
+INFO:     Started server process [2175037]
+INFO:     Waiting for application startup.
+2026-10-27 09:10:14,771 INFO Loading dandelin/vilt-b32-finetuned-vqa on cuda
+2026-10-27 09:10:19,002 INFO Startup finished in 4.2s
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8701 (Press CTRL+C to quit)
+2026-10-27 09:10:19,578 INFO GET /health -> 200 in 3 ms
+INFO:     127.0.0.1:36126 - "GET /health HTTP/1.1" 200 OK
+2026-10-27 09:10:20,650 INFO GET /health -> 200 in 1 ms
+INFO:     127.0.0.1:36142 - "GET /health HTTP/1.1" 200 OK
+2026-10-27 09:10:20,876 INFO Q='How many cats are there?' A='2' in 203.5 ms
+2026-10-27 09:10:20,877 INFO POST /predict -> 200 in 225 ms
+INFO:     127.0.0.1:36154 - "POST /predict HTTP/1.1" 200 OK
+2026-10-27 09:10:20,879 INFO POST /predict -> 422 in 1 ms
+INFO:     127.0.0.1:44456 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+2026-10-27 09:10:20,881 INFO POST /predict -> 422 in 1 ms
+INFO:     127.0.0.1:44458 - "POST /predict HTTP/1.1" 422 Unprocessable Entity
+2026-10-27 09:10:20,882 INFO POST /predict -> 400 in 0 ms
+INFO:     127.0.0.1:44470 - "POST /predict HTTP/1.1" 400 Bad Request
+Token indices sequence length is longer than the specified maximum sequence length for this model (102 > 40). Running this sequence through the model will result in indexing errors
+2026-10-27 09:10:20,897 INFO POST /predict -> 500 in 14 ms
+INFO:     127.0.0.1:44472 - "POST /predict HTTP/1.1" 500 Internal Server Error
+2026-10-27 09:10:20,917 INFO POST /predict -> 413 in 13 ms
+INFO:     127.0.0.1:44476 - "POST /predict HTTP/1.1" 413 Request Entity Too Large
+2026-10-27 09:10:20,954 INFO Q='What color is the couch?' A='pink' in 17.8 ms
+2026-10-27 09:10:20,954 INFO POST /predict -> 200 in 19 ms
+INFO:     127.0.0.1:44484 - "POST /predict HTTP/1.1" 200 OK
+2026-10-27 09:10:20,978 INFO Q='How many cats are there?' A='2' in 17.3 ms
+2026-10-27 09:10:20,978 INFO POST /predict -> 200 in 18 ms
+INFO:     127.0.0.1:44488 - "POST /predict HTTP/1.1" 200 OK
+2026-10-27 09:10:21,001 INFO Q='Is there a remote?' A='yes' in 17.2 ms
+2026-10-27 09:10:21,002 INFO POST /predict -> 200 in 18 ms
+INFO:     127.0.0.1:44496 - "POST /predict HTTP/1.1" 200 OK

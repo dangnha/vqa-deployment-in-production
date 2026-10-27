@@ -1,0 +1,6 @@
+$ nvidia-smi (before the native GPU run)
+name, memory.used [MiB], memory.total [MiB], utilization.gpu [%]
+NVIDIA GeForce RTX 3090, 329 MiB, 24576 MiB, 0 %
+pid, used_gpu_memory [MiB]
+pid, used_gpu_memory [MiB]
+2175037, 830 MiB

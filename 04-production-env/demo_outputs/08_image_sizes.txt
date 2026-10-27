@@ -1,0 +1,5 @@
+$ docker images vqa-api
+IMAGE             ID             DISK USAGE   CONTENT SIZE   EXTRA
+vqa-api:03        875d9402e80d        1.7GB          363MB        
+vqa-api:04-cpu    9b42dc7db3f5        1.7GB          363MB        
+vqa-api:04-cuda   6648b6a52c47       9.46GB          3.2GB        

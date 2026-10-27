@@ -1,0 +1,21 @@
+# Model load failure demo: MODEL_NAME=does-not/exist -> 503
+$ MODEL_NAME=does-not/exist uvicorn app.main:app --port 8701
+$ curl localhost:8701/health
+{"status":"error","model_loaded":false,"error":"does-not/exist is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'\nIf this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`"} HTTP 503
+$ curl -X POST localhost:8701/predict ...
+{"detail":"Model is not loaded"} HTTP 503
+--- server log
+INFO:     Started server process [2175377]
+INFO:     Waiting for application startup.
+2026-10-27 09:10:28,937 INFO Loading does-not/exist on cuda
+2026-10-27 09:10:29,324 ERROR Model loading failed: does-not/exist is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+2026-10-27 09:10:29,325 INFO Startup finished in 0.4s
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8701 (Press CTRL+C to quit)
+2026-10-27 09:10:29,746 INFO GET /health -> 503 in 2 ms
+INFO:     127.0.0.1:44580 - "GET /health HTTP/1.1" 503 Service Unavailable
+2026-10-27 09:10:30,763 INFO GET /health -> 503 in 2 ms
+INFO:     127.0.0.1:36638 - "GET /health HTTP/1.1" 503 Service Unavailable
+2026-10-27 09:10:30,794 INFO POST /predict -> 503 in 17 ms
+INFO:     127.0.0.1:36646 - "POST /predict HTTP/1.1" 503 Service Unavailable

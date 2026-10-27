@@ -1,0 +1,161 @@
+$ docker build -f Dockerfile.cuda -t vqa-api:04-cuda .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.cuda
+#1 transferring dockerfile: 601B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/pytorch/pytorch:2.4.1-cuda12.1-cudnn9-runtime
+#2 DONE 6.9s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 122B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 782B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/pytorch/pytorch:2.4.1-cuda12.1-cudnn9-runtime@sha256:ac7c098a81512e719afa5d2d497f812d7db3498f340a4b819c69cb7b3b257126
+#5 resolve docker.io/pytorch/pytorch:2.4.1-cuda12.1-cudnn9-runtime@sha256:ac7c098a81512e719afa5d2d497f812d7db3498f340a4b819c69cb7b3b257126 0.0s done
+#5 extracting sha256:762bedf4b1b784c3de6c5022c5307d63123d3b7cdd59211317e37e9d477deaa0
+#5 extracting sha256:762bedf4b1b784c3de6c5022c5307d63123d3b7cdd59211317e37e9d477deaa0 0.4s done
+#5 extracting sha256:7ed37ffdc5d14336d48efe98bd2b29b6695b9b96b82786b1fba8c5d574261d22
+#5 extracting sha256:7ed37ffdc5d14336d48efe98bd2b29b6695b9b96b82786b1fba8c5d574261d22 0.3s done
+#5 extracting sha256:000d344b13cfb1e5c55438795c5babd69645b3a84818fc2b692f08927f60b1f5
+#5 extracting sha256:000d344b13cfb1e5c55438795c5babd69645b3a84818fc2b692f08927f60b1f5 24.3s done
+#5 DONE 491.5s
+
+#5 [1/5] FROM docker.io/pytorch/pytorch:2.4.1-cuda12.1-cudnn9-runtime@sha256:ac7c098a81512e719afa5d2d497f812d7db3498f340a4b819c69cb7b3b257126
+#5 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done
+#5 extracting sha256:55a3e0099b43e1820555a62a464edc323049fa5dac8bd0ad4685f363876703ff done
+#5 DONE 491.6s
+
+#6 [2/5] WORKDIR /app
+#6 DONE 3.1s
+
+#7 [3/5] COPY requirements-cuda.txt .
+#7 DONE 0.0s
+
+#8 [4/5] RUN pip install --no-cache-dir -r requirements-cuda.txt
+#8 0.856 Collecting transformers==4.46.3 (from -r requirements-cuda.txt (line 1))
+#8 1.205   Downloading transformers-4.46.3-py3-none-any.whl.metadata (44 kB)
+#8 1.366 Requirement already satisfied: pillow in /opt/conda/lib/python3.11/site-packages (from -r requirements-cuda.txt (line 2)) (10.2.0)
+#8 1.588 Collecting fastapi (from -r requirements-cuda.txt (line 3))
+#8 1.684   Downloading fastapi-0.162.0-py3-none-any.whl.metadata (26 kB)
+#8 1.861 Collecting python-multipart (from -r requirements-cuda.txt (line 5))
+#8 1.984   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+#8 2.133 Collecting uvicorn[standard] (from -r requirements-cuda.txt (line 4))
+#8 2.217   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+#8 2.243 Requirement already satisfied: filelock in /opt/conda/lib/python3.11/site-packages (from transformers==4.46.3->-r requirements-cuda.txt (line 1)) (3.15.4)
+#8 2.467 Collecting huggingface-hub<1.0,>=0.23.2 (from transformers==4.46.3->-r requirements-cuda.txt (line 1))
+#8 2.590   Downloading huggingface_hub-0.36.2-py3-none-any.whl.metadata (15 kB)
+#8 2.621 Requirement already satisfied: numpy>=1.17 in /opt/conda/lib/python3.11/site-packages (from transformers==4.46.3->-r requirements-cuda.txt (line 1)) (2.1.1)
+#8 2.621 Requirement already satisfied: packaging>=20.0 in /opt/conda/lib/python3.11/site-packages (from transformers==4.46.3->-r requirements-cuda.txt (line 1)) (24.1)
+#8 2.621 Requirement already satisfied: pyyaml>=5.1 in /opt/conda/lib/python3.11/site-packages (from transformers==4.46.3->-r requirements-cuda.txt (line 1)) (6.0.2)
+#8 4.045 Collecting regex!=2019.12.17 (from transformers==4.46.3->-r requirements-cuda.txt (line 1))
+#8 4.132   Downloading regex-2026.9.29-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+#8 4.192 Requirement already satisfied: requests in /opt/conda/lib/python3.11/site-packages (from transformers==4.46.3->-r requirements-cuda.txt (line 1)) (2.32.3)
+#8 4.920 Collecting tokenizers<0.21,>=0.20 (from transformers==4.46.3->-r requirements-cuda.txt (line 1))
+#8 5.004   Downloading tokenizers-0.20.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+#8 5.779 Collecting safetensors>=0.4.1 (from transformers==4.46.3->-r requirements-cuda.txt (line 1))
+#8 5.880   Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+#8 5.897 Requirement already satisfied: tqdm>=4.27 in /opt/conda/lib/python3.11/site-packages (from transformers==4.46.3->-r requirements-cuda.txt (line 1)) (4.66.5)
+#8 6.201 Collecting starlette>=0.46.0 (from fastapi->-r requirements-cuda.txt (line 3))
+#8 6.303   Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+#8 7.364 Collecting pydantic>=2.9.0 (from fastapi->-r requirements-cuda.txt (line 3))
+#8 7.450   Downloading pydantic-2.14.1-py3-none-any.whl.metadata (133 kB)
+#8 7.610 Requirement already satisfied: typing-extensions>=4.8.0 in /opt/conda/lib/python3.11/site-packages (from fastapi->-r requirements-cuda.txt (line 3)) (4.12.2)
+#8 7.736 Collecting typing-inspection>=0.4.2 (from fastapi->-r requirements-cuda.txt (line 3))
+#8 7.847   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+#8 7.966 Collecting annotated-doc>=0.0.2 (from fastapi->-r requirements-cuda.txt (line 3))
+#8 8.052   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+#8 8.302 Collecting opentelemetry-api>=1.44.0 (from fastapi->-r requirements-cuda.txt (line 3))
+#8 8.422   Downloading opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+#8 8.427 Requirement already satisfied: click>=7.0 in /opt/conda/lib/python3.11/site-packages (from uvicorn[standard]->-r requirements-cuda.txt (line 4)) (8.1.7)
+#8 8.544 Collecting h11>=0.8 (from uvicorn[standard]->-r requirements-cuda.txt (line 4))
+#8 8.628   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#8 9.135 Collecting httptools>=0.8.0 (from uvicorn[standard]->-r requirements-cuda.txt (line 4))
+#8 9.239   Downloading httptools-0.9.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+#8 9.414 Collecting python-dotenv>=0.13 (from uvicorn[standard]->-r requirements-cuda.txt (line 4))
+#8 9.512   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+#8 10.09 Collecting uvloop>=0.15.1 (from uvicorn[standard]->-r requirements-cuda.txt (line 4))
+#8 10.20   Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+#8 12.17 Collecting watchfiles>=0.20 (from uvicorn[standard]->-r requirements-cuda.txt (line 4))
+#8 12.41   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#8 16.03 Collecting websockets>=13.0 (from uvicorn[standard]->-r requirements-cuda.txt (line 4))
+#8 16.14   Downloading websockets-17.3-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+#8 16.56 Requirement already satisfied: fsspec>=2023.5.0 in /opt/conda/lib/python3.11/site-packages (from huggingface-hub<1.0,>=0.23.2->transformers==4.46.3->-r requirements-cuda.txt (line 1)) (2024.9.0)
+#8 17.49 Collecting hf-xet<2.0.0,>=1.1.3 (from huggingface-hub<1.0,>=0.23.2->transformers==4.46.3->-r requirements-cuda.txt (line 1))
+#8 17.57   Downloading hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+#8 17.94 Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi->-r requirements-cuda.txt (line 3))
+#8 18.03   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#8 27.60 Collecting pydantic-core==2.50.1 (from pydantic>=2.9.0->fastapi->-r requirements-cuda.txt (line 3))
+#8 27.69   Downloading pydantic_core-2.50.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.5 kB)
+#8 27.87 Collecting typing-extensions>=4.8.0 (from fastapi->-r requirements-cuda.txt (line 3))
+#8 27.95   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#8 28.15 Collecting anyio<5,>=4.0.0 (from starlette>=0.46.0->fastapi->-r requirements-cuda.txt (line 3))
+#8 28.24   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+#8 28.28 Requirement already satisfied: charset-normalizer<4,>=2 in /opt/conda/lib/python3.11/site-packages (from requests->transformers==4.46.3->-r requirements-cuda.txt (line 1)) (3.3.2)
+#8 28.28 Requirement already satisfied: idna<4,>=2.5 in /opt/conda/lib/python3.11/site-packages (from requests->transformers==4.46.3->-r requirements-cuda.txt (line 1)) (3.8)
+#8 28.28 Requirement already satisfied: urllib3<3,>=1.21.1 in /opt/conda/lib/python3.11/site-packages (from requests->transformers==4.46.3->-r requirements-cuda.txt (line 1)) (2.2.2)
+#8 28.28 Requirement already satisfied: certifi>=2017.4.17 in /opt/conda/lib/python3.11/site-packages (from requests->transformers==4.46.3->-r requirements-cuda.txt (line 1)) (2024.8.30)
+#8 28.38 Downloading transformers-4.46.3-py3-none-any.whl (10.0 MB)
+#8 38.68    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.0/10.0 MB 1.0 MB/s eta 0:00:00
+#8 38.78 Downloading fastapi-0.162.0-py3-none-any.whl (148 kB)
+#8 39.02 Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+#8 39.11 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+#8 39.22 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#8 39.34 Downloading httptools-0.9.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (499 kB)
+#8 39.72 Downloading huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+#8 40.24    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.4/566.4 kB 1.1 MB/s eta 0:00:00
+#8 40.33 Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+#8 40.59 Downloading pydantic-2.14.1-py3-none-any.whl (488 kB)
+#8 41.45 Downloading pydantic_core-2.50.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.2 MB)
+#8 44.56    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 716.3 kB/s eta 0:00:00
+#8 44.64 Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+#8 44.76 Downloading regex-2026.9.29-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (804 kB)
+#8 45.74    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 805.0/805.0 kB 851.9 kB/s eta 0:00:00
+#8 45.83 Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
+#8 46.56 Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+#8 46.76 Downloading tokenizers-0.20.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+#8 51.35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 654.3 kB/s eta 0:00:00
+#8 51.43 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#8 51.56 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+#8 51.66 Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.0 MB)
+#8 55.48    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 1.1 MB/s eta 0:00:00
+#8 55.57 Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+#8 56.01 Downloading websockets-17.3-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (225 kB)
+#8 56.26 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+#8 56.40 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#8 56.49 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#8 56.67 Downloading hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.2 MB)
+#8 58.95    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.2/4.2 MB 1.9 MB/s eta 0:00:00
+#8 59.11 Installing collected packages: websockets, uvloop, typing-extensions, safetensors, regex, python-multipart, python-dotenv, httptools, hf-xet, h11, annotated-types, annotated-doc, uvicorn, typing-inspection, pydantic-core, opentelemetry-api, huggingface-hub, anyio, watchfiles, tokenizers, starlette, pydantic, transformers, fastapi
+#8 59.22   Attempting uninstall: typing-extensions
+#8 59.23     Found existing installation: typing_extensions 4.12.2
+#8 59.23     Uninstalling typing_extensions-4.12.2:
+#8 59.29       Successfully uninstalled typing_extensions-4.12.2
+#8 62.65 Successfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 fastapi-0.162.0 h11-0.16.0 hf-xet-1.7.0 httptools-0.9.0 huggingface-hub-0.36.2 opentelemetry-api-1.45.1 pydantic-2.14.1 pydantic-core-2.50.1 python-dotenv-1.2.4 python-multipart-0.0.32 regex-2026.9.29 safetensors-0.8.0 starlette-1.10.0 tokenizers-0.20.3 transformers-4.46.3 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.3
+#8 62.65 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#8 DONE 63.5s
+
+#9 [5/5] COPY app ./app
+#9 DONE 0.1s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 4.0s done
+#10 exporting manifest sha256:20e8f7d0a0bdbf6e04f855635b04479a07b372bb67a569d90492d41aa6a6605b done
+#10 exporting config sha256:d7b2eb20d731316d606e2fa1c8f3ab5c3156a2165c072ab8e9a97275abf8b8fd 0.0s done
+#10 exporting attestation manifest sha256:927101c931725769d262c544241a239433d62c3e66f02a71c68e22899795942e 0.0s done
+#10 exporting manifest list sha256:6648b6a52c47e954492d34268a0989ebfbe151f5c0af32dba2fc6cdc8c50bed2 0.0s done
+#10 naming to docker.io/library/vqa-api:04-cuda done
+#10 unpacking to docker.io/library/vqa-api:04-cuda
+#10 unpacking to docker.io/library/vqa-api:04-cuda 25.7s done
+#10 DONE 29.8s
+
+real	9m55.387s
+user	0m1.970s
+sys	0m1.027s
+(download progress lines removed)
