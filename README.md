@@ -5,7 +5,7 @@ a visual question answering model: you give it an image and a question in Englis
 with a confidence score. Over five parts it takes the model from a single Python script to a Docker Compose
 system with a REST API, a web UI and a request log.
 
-![Pipeline overview](assets/pipeline.png)
+![VQA deployment pipeline](assets/pipeline.png)
 
 ## What you will learn
 
